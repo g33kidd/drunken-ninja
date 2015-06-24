@@ -2,7 +2,6 @@ This is currently a Work in Progress project that I'm working on. It will be an 
 
 I don't currently have a name for this project, but I assume it will come over time.
 
-
 Planned Features
 ====
 
@@ -20,4 +19,4 @@ Planned Features
 Contributing
 ====
 
-If you are interested in contributing, please feel free to submit a pull request and feel free to tackle any issues in the [Roadmap](https://trello.com/b/9cIara3V/drunken-ninja-roadmap).
+If you are interested in contributing, feel free to submit a pull request.
