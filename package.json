@@ -1,5 +1,5 @@
 {
-  "name": "mazing",
+  "name": "drunken-ninja",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^2.9.30",
+    "body-parser": "^1.13.1",
     "express": "^4.13.0",
+    "hbs": "^3.1.0",
     "mongoose": "^4.0.6",
     "sqlite3": "^3.0.8",
     "underscore": "^1.8.3"

@@ -1,13 +1,13 @@
 var express = require('express');
 var router  = express.Router();
 
-adminRoutes = function() {
+apiRoutes = function() {
 
   router.get('/', function(req, res) {
-    res.render('error');
+    res.send("OK! This is /api/");
   });
 
   return router;
 }
 
-module.exports = adminRoutes();
+module.exports = apiRoutes();
