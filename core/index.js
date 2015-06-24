@@ -3,15 +3,31 @@ var express     = require('express');
 var bodyParser  = require('body-parser');
 var routes      = require('./routes');
 var path        = require('path');
+var mongoose    = require('mongoose');
+var errors      = require('./errors');
+var logger      = require('morgan');
 
-function App() {
+function App(options) {
   this.host = '127.0.0.1';
   this.port = 3000;
   this.httpServer = null;
+
+  this.rootPath = options.rootPath;
+
 };
 
 App.prototype.start = function(rootApp) {
   var self = this;
+
+  mongoose.connect('mongodb://localhost/database');
+
+  // Connect to mongodb and exit if there is no connection.
+  this.db = mongoose.connection;
+  this.db.on('error', function(error) {
+    console.log("connection error: " + error);
+    console.log("Please check connection settings and ensure MongoDB server is running.");
+    process.exit(1);
+  });
 
   self.httpServer = http.createServer(rootApp);
   self.httpServer.listen(self.port, function() {
@@ -30,6 +46,7 @@ App.prototype.init = function(rootApp) {
 
   rootApp.set('views', path.join(__dirname, 'views'));
   rootApp.set('view engine', 'hbs');
+  rootApp.use(logger('dev'));
   rootApp.use(bodyParser.json());
   rootApp.use(bodyParser.urlencoded({
     extended: true
@@ -38,20 +55,34 @@ App.prototype.init = function(rootApp) {
   rootApp.use('/admin', admin);
   rootApp.use('/api', api);
 
+  rootApp.disable('x-powered-by');
+
   return rootApp;
 }
 
 App.prototype.initAdmin = function(app) {
-  app.use(routes.admin);
-  app.set('views', path.join(__dirname, 'views'));
+  var self = this;
+  app.set('views', path.join(self.rootPath, 'admin'));
   app.set('view engine', 'hbs');
+  app.use(routes.admin);
+  app.use(logger('dev'));
+  app.use(bodyParser.json());
+  app.disable('x-powered-by');
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
   return app;
 }
 
 App.prototype.initApi = function(app) {
+  var self = this;
   app.use(routes.api);
-  app.set('views', path.join(__dirname, 'views'));
-  app.set('view engine', 'hbs');
+  app.use(logger('dev'));
+  app.use(bodyParser.json());
+  app.disable('x-powered-by');
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
   return app;
 }
 
