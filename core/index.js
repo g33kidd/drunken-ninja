@@ -62,11 +62,12 @@ App.prototype.init = function(rootApp) {
 
 App.prototype.initAdmin = function(app) {
   var self = this;
-  app.set('views', path.join(self.rootPath, 'admin'));
-  app.set('view engine', 'hbs');
+  // app.set('views', path.join(self.rootPath, 'admin'));
+  // app.set('view engine', 'hbs');
   app.use(routes.admin);
   app.use(logger('dev'));
   app.use(bodyParser.json());
+  app.use(express.static(path.join(self.rootPath, 'admin/index.html')));
   app.disable('x-powered-by');
   app.use(bodyParser.urlencoded({
     extended: true

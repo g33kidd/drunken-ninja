@@ -3,9 +3,9 @@ var router  = express.Router();
 
 adminRoutes = function() {
 
-  router.get('/', function(req, res) {
-    res.render('error');
-  });
+  // router.get('/', function(req, res) {
+  //   res.render('index');
+  // });
 
   return router;
 }
