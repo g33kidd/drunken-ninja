@@ -11,8 +11,11 @@
   "dependencies": {
     "bluebird": "^2.9.30",
     "body-parser": "^1.13.1",
+    "broccoli-sass": "^0.6.6",
+    "broccoli-static-compiler": "^0.2.1",
     "express": "^4.13.0",
     "hbs": "^3.1.0",
+    "method-override": "^2.3.3",
     "mongoose": "^4.0.6",
     "morgan": "^1.6.0",
     "sqlite3": "^3.0.8",

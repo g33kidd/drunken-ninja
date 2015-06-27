@@ -17,7 +17,8 @@ export default Ember.Controller.extend({
     deletePost: function(post) {
       this.store.find('post', post.id).then(function(post) {
         post.deleteRecord();
-        post.save();
+        post.get('isDeleted'); // => true
+        post.save(); // => DELETE to /posts/1
       })
     }
   }

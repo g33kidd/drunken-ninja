@@ -1,10 +1,19 @@
 <h1>Posts</h1>
 
-<ul>
-  {{#each model as |post|}}
-    <li>{{post.title}} - {{post.content}} - {{post.id}} <a {{action "deletePost" post}}>Delete</a></li>
-  {{/each}}
-</ul>
+{{#if model}}
+{{#each post in model}}
+  <div class="post">
+    <h4>{{post.title}}</h4>
+    <div class="content">
+      {{post.content}}
+    </div>
+    <br>
+    <a {{action "deletePost" post}} style="color: red;">Delete</a>
+  </div>
+{{/each}}
+{{else}}
+  <h3>There are no posts! Try creating one.</h3>
+{{/if}}
 
 <br>
 

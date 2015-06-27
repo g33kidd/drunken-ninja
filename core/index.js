@@ -6,14 +6,13 @@ var path        = require('path');
 var mongoose    = require('mongoose');
 var errors      = require('./errors');
 var logger      = require('morgan');
+var methodOverride = require('method-override');
 
 function App(options) {
   this.host = '127.0.0.1';
   this.port = 3000;
   this.httpServer = null;
-
   this.rootPath = options.rootPath;
-
 };
 
 App.prototype.start = function(rootApp) {
@@ -85,6 +84,7 @@ App.prototype.initApi = function(app) {
 
   // NOTE: THIS IS ONLY FOR DEVELOPMENT. REMOVE THIS WHEN IN PRODUCTION!
   app.use(allowCrossDomain);
+  app.use(methodOverride());
 
   app.use(bodyParser.urlencoded({
     extended: true
@@ -93,9 +93,9 @@ App.prototype.initApi = function(app) {
 }
 
 var allowCrossDomain = function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
 
     next();
 }
