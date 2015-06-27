@@ -52,6 +52,7 @@ App.prototype.init = function(rootApp) {
     extended: true
   }));
 
+  rootApp.use(allowCrossDomain);
   rootApp.use('/admin', admin);
   rootApp.use('/api', api);
 
@@ -81,10 +82,22 @@ App.prototype.initApi = function(app) {
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.disable('x-powered-by');
+
+  // NOTE: THIS IS ONLY FOR DEVELOPMENT. REMOVE THIS WHEN IN PRODUCTION!
+  app.use(allowCrossDomain);
+
   app.use(bodyParser.urlencoded({
     extended: true
   }));
   return app;
+}
+
+var allowCrossDomain = function(req, res, next) {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
 }
 
 module.exports = App;

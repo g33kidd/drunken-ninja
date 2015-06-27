@@ -15,6 +15,17 @@ Planned Features
 - Live Preview pages
 - more in the [roadmap](https://trello.com/b/9cIara3V/drunken-ninja-roadmap)
 
+Development
+====
+
+For now, have ember-cli installed and run ember serve from within the admin directory.
+
+You will need to have the following running:
+- MongoDB Server
+- nodemon index.js --watch core content to watch core/ and content/ and not admin/.
+- Admin ember server: ember server
+
+Eventually there will be a build in server to serve the admin app directly.
 
 Contributing
 ====

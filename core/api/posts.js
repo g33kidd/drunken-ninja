@@ -22,7 +22,7 @@ module.exports = {
 
   getAllPosts: function(cb) {
     Post.find().lean().exec(function(err, posts) {
-      console.log(posts);
+      if(err) console.log(err);
       cb(posts);
     });
   }

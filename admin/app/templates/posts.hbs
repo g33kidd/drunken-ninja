@@ -1,0 +1,7 @@
+<h1>Posts</h1>
+
+<ul>
+  {{#each model as |post|}}
+    <li>{{post.title}} - {{post.content}} - {{post._id}}</li>
+  {{/each}}
+</ul>
