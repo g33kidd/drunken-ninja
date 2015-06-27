@@ -21,17 +21,18 @@ apiRoutes = function() {
     });
   });
 
-  router.post(function(req, res) {
-    if(req.body.title && req.body.content) {
-      var post = api.posts.addPost(req.body.title, req.body.content, 1);
-      res.json(post);
-    }
-  });
+  // router.post(function(req, res) {
+  //   if(req.body.title && req.body.content) {
+  //     var post = api.posts.addPost(req.body.title, req.body.content, 1);
+  //     res.json(post);
+  //   }
+  // });
 
   router.route('/posts')
     .post(function(req, res) {
-      if(req.body.title && req.body.content) {
-        var post = api.posts.addPost(req.body.title, req.body.content, 1);
+      console.log(req);
+      if(req.body.post.title && req.body.post.content) {
+        var post = api.posts.addPost(req.body.post.title, req.body.post.content, 1);
         res.json(post);
       }else{
         res.json({

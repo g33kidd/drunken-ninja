@@ -2,6 +2,15 @@
 
 <ul>
   {{#each model as |post|}}
-    <li>{{post.title}} - {{post.content}} - {{post._id}}</li>
+    <li>{{post.title}} - {{post.content}} - {{post.id}} <a {{action "deletePost" post}}>Delete</a></li>
   {{/each}}
 </ul>
+
+<br>
+
+<h1>New Post</h1>
+<form {{action "newPost" on="submit"}}>
+  {{input class="post-title" type="text" placeholder="Title"}}
+  {{input class="post-content" type="text" placeholder="Content"}}
+  <button type="submit" name="button">Create Post</button>
+</form>
