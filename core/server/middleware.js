@@ -22,7 +22,7 @@ setupMiddleware = function setupMiddleware(rootApp, adminApp) {
   rootApp.use('/admin', adminApp);
   rootApp.use(routes.apiBaseUri, routes.api);
 
-  rootApp.set('x-powered-by', 'Oovre beta-0.0.1');
+  rootApp.disable('x-powered-by');
 }
 
 module.exports = setupMiddleware;

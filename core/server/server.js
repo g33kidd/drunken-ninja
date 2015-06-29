@@ -50,9 +50,8 @@ Server.prototype.logStartMessages = function() {
     process.exit(0);
   }
 
-  process.
-    removeAllListeners('SIGINT').on('SIGINT', shutdown).
-    removeAllListeners('SIGTERM').on('SIGTERM', shutdown);
+  process.removeAllListeners('SIGINT').on('SIGINT', shutdown).
+  removeAllListeners('SIGTERM').on('SIGTERM', shutdown);
 }
 
 module.exports = Server;
