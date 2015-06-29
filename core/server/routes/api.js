@@ -8,7 +8,9 @@ apiRoutes = function() {
   router.get('/', function(req, res) {
     // Just for testing, change this later to actually check
     // if the user is logged in.
-    // res.status(500);
+    res.json({
+      message: "Access denied!"
+    })
   });
 
   // Again, just for testing and specifications.

@@ -4,8 +4,8 @@ export default Ember.Controller.extend({
 
   actions: {
     newPost: function() {
-      var title = $('.post-title').val();
-      var content = $('.post-content').val();
+      var title = Ember.$('.post-title').val();
+      var content = Ember.$('.post-content').val();
 
       var post = this.store.createRecord('post', {
         title: title,
@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
         post.deleteRecord();
         post.get('isDeleted'); // => true
         post.save(); // => DELETE to /posts/1
-      })
+      });
     }
   }
 

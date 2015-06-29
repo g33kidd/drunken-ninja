@@ -6,7 +6,7 @@ var chalk       = require('chalk');
 function Server(rootApp) {
   this.rootApp = rootApp;
   this.host = '127.0.0.1';
-  this.port = 4000;
+  this.port = 3000;
   this.httpServer = null;
   /*this.rootPath = options.rootPath;*/
 };
@@ -36,11 +36,12 @@ Server.prototype.start = function start() {
 };
 
 Server.prototype.logStartMessages = function() {
+  var self = this;
   if(process.env.NODE_ENV === 'development') {
     console.log(
       chalk.green('App is running in ' + process.env.NODE_ENV + '...'),
       '\nListening on',
-      'http://localhost:4000',
+      "http://" + self.host + ':' + self.port,
       chalk.gray('\nCtrl+C to shut down')
     );
   }

@@ -9,6 +9,9 @@ frontendRoutes = function() {
     // Just for testing, change this later to actually check
     // if the user is logged in.
     // res.status(500);
+    api.posts.getAllPosts(function(posts) {
+      res.render('index', { posts: posts });
+    });
   });
 
   return router;
