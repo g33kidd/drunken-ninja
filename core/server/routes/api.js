@@ -30,7 +30,6 @@ apiRoutes = function() {
 
       api.posts.addPost(postOptions, function(newPost) {
         res.json({post: newPost});
-        console.log(newPost);
       });
 
       res.status(200);

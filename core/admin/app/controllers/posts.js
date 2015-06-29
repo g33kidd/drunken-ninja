@@ -7,11 +7,10 @@ export default Ember.Controller.extend({
       var title = Ember.$('.post-title').val();
       var content = Ember.$('.post-content').val();
 
-      var post = this.store.createRecord('post', {
+      this.store.createRecord('post', {
         title: title,
         content: content
-      });
-      post.save();
+      }).save();
     },
 
     deletePost: function(post) {

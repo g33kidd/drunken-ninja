@@ -6,7 +6,6 @@ module.exports = {
     var post = new Post(options);
     post.save(function(err, post) {
       if(err) return err;
-      console.log(post);
       cb(post);
     });
   },
