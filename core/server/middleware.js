@@ -18,6 +18,13 @@ updateActiveTheme = function(req, res, next) {
   next();
 }
 
+accessControl = function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  next();
+}
+
 // Middleware sets up Routes, Express Middleware, HBS, etc..
 setupMiddleware = function setupMiddleware(rootApp, adminApp) {
   var defaulthbs = {
@@ -31,7 +38,7 @@ setupMiddleware = function setupMiddleware(rootApp, adminApp) {
 
   var siteHbs = hbs.create(defaulthbs);
 
-  rootApp.use(compress());
+  rootApp.use(compress(1));
   rootApp.use(logger('dev'));
 
   adminApp.use(routes.admin);
@@ -41,22 +48,17 @@ setupMiddleware = function setupMiddleware(rootApp, adminApp) {
   rootApp.use(bodyParser.urlencoded({ extended: true }));
   rootApp.use(methodOverride());
 
-  // Fix this and make it's own function.
-  rootApp.use(function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', 'http://localhost:4200');
-    res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-    next();
-  });
+  rootApp.use(accessControl);
+  rootApp.use(updateActiveTheme);
 
   // This is only for testing, this should be moved to updateActiveTheme
   rootApp.engine('handlebars', siteHbs.engine);
   rootApp.set('view engine', '.hbs');
   rootApp.set('views', __dirname + '/views/');
 
-  // Front-end routes
+  // All The Routes
+  // TODO: Build middleware for extending routes.
   rootApp.use(routes.frontend);
-
   rootApp.use('/admin', adminApp);
   rootApp.use(routes.apiBaseUri, routes.api);
 
