@@ -3,5 +3,6 @@ var apiRoutes       = require('./api');
 
 module.exports = {
   admin: adminRoutes,
-  api: apiRoutes
+  api: apiRoutes,
+  apiBaseUri: '/api/v1'
 };

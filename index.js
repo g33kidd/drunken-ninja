@@ -1,16 +1,14 @@
-var http      = require('http');
-var url       = require('url');
-var fs        = require('fs');
-var path      = require('path');
-var express   = require('express');
-var App       = require('./core');
+var app = require('./core');
 
-var options = {
-  rootPath: path.resolve(__dirname)
-};
+// Starts the entire application
+appServer = app();
+appServer.start();
 
-var rootApp = express();
-
-var app = new App(options);
-app.init(rootApp);
-app.start(rootApp);
+// Use something like below eventually using promises.
+// Possibly the bluebird lib.
+/*app().then(function(appServer) {
+  appServer.start();
+}).catch(function(err) {
+  console.log(err);
+  process.exit(-1);
+});*/
